@@ -1,7 +1,7 @@
 #include <iostream>
 #include <iomanip>
 using namespace std;
-/*funçao dada para a funcao derivada */
+/*funÃ§ao dada para a funcao derivada */
 double f(double t, double x) {
 	int a = 2, b = 2;
 	return sin(a * x) + sin(b * t);
@@ -13,7 +13,7 @@ void alineaA()
 	/*  valores iniciais    */
 	double t = 1, x = 1;
 
-	// h é o passo de integracao, vendo se pelo aumento de t 
+	// h Ã© o passo de integracao, vendo se pelo aumento de t 
 	double h = 0.125;
 
 	cout << "t " << setw(10) << " x " << endl;
@@ -28,7 +28,7 @@ void alineaA()
 
 		x += dx1 / 6 + dx2 / 3 + dx3 / 3 + dx4 / 6;
 
-		//soma do valor anterior (inicial na 1 iteracao) com o passo de integração
+		//soma do valor anterior (inicial na 1 iteracao) com o passo de integraÃ§Ã£o
 		t += h;
 
 		cout << t << setw(10) << x << endl;
@@ -57,10 +57,10 @@ int main() {
 }
 
 /*   Alinea C
-Dado que o quociente de convergencia é superior 2^ordem = 2^4 = 16 (pois é aproximadamente 20), 
-nao garantimos que o resultado é uma boa aproximação ao valor exato.
-Devias portanto diminuir o intervalo de integração para metade até o 
-quociente de convergencia se igual ou inferior a 16,
+Dado que o quociente de convergencia Ã© superior 2^ordem = 2^4 = 16 (pois Ã© aproximadamente 20), 
+nao garantimos que o resultado Ã© uma boa aproximaÃ§Ã£o ao valor exato.
+Deviamoss portanto diminuir o intervalo de integraÃ§Ã£o para metade atÃ© o 
+quociente de convergencia ser aproximadamente igual a 16,
 */
 
 
