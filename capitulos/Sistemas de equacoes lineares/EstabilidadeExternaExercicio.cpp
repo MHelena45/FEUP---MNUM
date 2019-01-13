@@ -25,22 +25,24 @@ int main()
 
 /*Alinea B no maxima evitando matrizes
 
-eq1: 0.1 * a + 0.5 *b + 3 *c +0.25*d = 0;
-eq2 : 1.2 *a + 0.2 *b + 0.25 * c + 0.2 * d = 1;
-eq3 : -1 * a + 0.25 * b + 0.3 *c + 2 *d =2
-eq4 : 2*a+0.00001 *b +c +0.4 * d = 3
+eq1: 0.1 * a + 0.5 *b + 3 *c +0.25*d =Â 0;
+eq2 :Â 1.2 *a + 0.2 *b + 0.25 * c + 0.2 * d =Â 1;
+eq3 :Â -1 * a + 0.25 * b + 0.3 *c + 2 *d =2
+eq4 :Â 2*a+0.00001 *b +c +0.4 * d = 3
 float(solve([eq1,eq2,eq3,eq4],[a,b,c,d]));
 */
 /*Alinea C
 Estabilidade externa
+Sabendo que A estÃ¡ afetada por um erro de  0.5 e B tambem estÃ¡ afetada por um erro de 0.5.
+
  0.5 - (0.5 * (0.97265 - 3.0650 + 0.32663 + 1.82038));
- os residuos das equacoes tem por isso o valor de 0.47267
+ Os residuos das equacoes tem por isso o valor de 0.47267
 
  Resolvendo novamente a mesma matriz a com b = matrix([0.47267], [0.47267],[0.47267],[0.47267]);
 
- eq1: 0.1 * a + 0.5 *b + 3 *c +0.25*d = 0.47267;
- eq2 : 1.2 *a + 0.2 *b + 0.25 * c + 0.2 * d = 0.47267;
- eq3 : -1 * a + 0.25 * b + 0.3 *c + 2 *d =0.47267;
- eq4 : 2*a+0.00001 *b +c +0.4 * d = 0.47267;
+ eq1: 0.1 * a + 0.5 *b + 3 *c +0.25*d =Â 0.47267;
+ eq2 :Â 1.2 *a + 0.2 *b + 0.25 * c + 0.2 * d =Â 0.47267;
+ eq3 :Â -1 * a + 0.25 * b + 0.3 *c + 2 *d =0.47267;
+ eq4 :Â 2*a+0.00001 *b +c +0.4 * d = 0.47267;
  float(solve([eq1,eq2,eq3,eq4],[a,b,c,d]));
  */
