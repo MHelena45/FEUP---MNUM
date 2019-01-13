@@ -1,0 +1,8 @@
+tópicos
+.truncatura VS arredondamento e qual o impacto dessas operações no resultado final
+. impacto dos coeficientes escalares da variável X e como influenciam o erro
+Exemplo
+tens 5*x^2, numa equação em que o resultado correto de x seria 2,9.
+O facto de ter um coeficiente 5 e um expoente 2 vai propagar o erro quer em caso de truncatura do valor quer em caso de arredondamento.
+Quanto maior for o exponente / coeficiente, maior vai ser a propagação
+.o exponente limitado os resultados parciais que são dizimas infinitas também sofrem erro numérico
