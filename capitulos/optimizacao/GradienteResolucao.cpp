@@ -22,18 +22,18 @@ int main()
 	cout << Zlx(xn, yn) << endl;
 	cout << Zly(xn, yn) << endl;
 
-	double h = 1;  //Inicialmente lambda é igual a 1.
+	double h = 1;  //Inicialmente lambda Ã© igual a 1.
 
 	while (true) { //ciclo termina quando Z>0
 
 		xn1 = xn - h * Zlx(xn, yn);
 		yn1 = yn - h * Zly(xn, yn);
-		if (Z(xn1, yn1) > 0)
+		if (Z(xn1, yn1) > Z(xn, yn) )
 			h /= 2; //se Z > 0 descarta-se outra vez o ponto e corta-se o passo ao meio
 		else break;
 	}	
 	/* LAMBDA */
-	/* Apenas se pôe o passo *efetivo* de minimização.	*/
+	/* Apenas se pÃ´e o passo *efetivo* de minimizaÃ§Ã£o.	*/
 	cout << "Lambda efetivo : " << h << endl; //neste caso o lambda acaba por ficar 0.25
 	z = Z(xn1, yn1);
 	cout << "x : "<< xn1 << endl << "y : " << yn1 << endl;
