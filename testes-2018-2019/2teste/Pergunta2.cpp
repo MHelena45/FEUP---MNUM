@@ -14,7 +14,7 @@ double fll(double t, double x, double z)
 }
 int main()
 {
-	double h = 0.1; //lambda por tentativa erro
+	double h = 0.1; //havendo 5 ponto entre 0 e 0.5, o passo de integração e 0.1
 	double t = 0;
 	double x = 1;
 	double z = 0;
