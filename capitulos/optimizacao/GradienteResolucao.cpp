@@ -29,7 +29,7 @@ int main()
 		xn1 = xn - h * Zlx(xn, yn);
 		yn1 = yn - h * Zly(xn, yn);
 		if (Z(xn1, yn1) > Z(xn, yn) )
-			h /= 2; //se Z > 0 descarta-se outra vez o ponto e corta-se o passo ao meio
+			h /= 2; //se o proximo z e maior que o anterior descarta-se (outra vez) o ponto e corta-se o passo ao meio
 		else break;
 	}	
 	/* LAMBDA */
