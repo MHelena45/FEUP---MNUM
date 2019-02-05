@@ -1,47 +1,90 @@
 #include <iostream>
 #include <iomanip>
+#include <cmath>
 using namespace std;
+
 double Z(double x, double y)
 {
-	return 6 * x*x - x * y + 12 * y + y * y - 8 * x;
+	return 6 * pow(x, 2) -x *y + 12 * y + y * y - 8 * x;
 }
-double Zlx(double x, double y)
+
+//No maxima
+//eq1: 3*x^2-x*y+11*y+y^2-8*x;
+//diff(eq1,x);
+double Zx(double x, double y)
 {
-	return 12 * x - y - 8;
+	return -y + 12 * x - 8;
 }
-double Zly(double x, double y)
+
+//diff(eq1,y);
+double Zy(double x, double y)
 {
-	return -x + 12 + 2 * y;
+	return 2 * y - x + 12;
 }
+
+int gradiente(double x,double y, double lambda, double precisao) {
+	int iteracoes = 0;
+	double xn1, yn1;
+	bool final = false;
+	double Gx = Zx(x, y), Gy = Zy(x,y);
+
+	xn1 = x - lambda * Gx;
+	yn1 = y - lambda * Gy;
+	while (abs(xn1 - x) > precisao || abs(yn1 - y) > precisao)
+	{
+		iteracoes++;
+		if (final) {
+			x = xn1;
+			y = yn1;
+		}
+		xn1 = x - lambda * Gx;
+		yn1 = y - lambda * Gy;
+		if (Z(xn1, yn1) < Z(x, y))
+		{
+			final = true;
+			lambda *= 2;
+		}
+		else
+		{
+			final = false;
+			lambda /= 2;
+		}		
+	}
+
+	cout << setw(5) << "Xn" << setw(20) << "Z(Xn)" << setw(25) << "Gradient" << endl;
+	cout << xn1 << setw(20) << Z(xn1, yn1) << setw(20) << Zx(xn1, yn1) << endl;
+	cout << yn1 << setw(40) << Zy(xn1, yn1) << endl;
+	return iteracoes;
+}
+
 int main()
 {
-	double xn1, xn = 0, yn1, yn = 0;
-	double z = Z(xn, yn);
-	cout << "Z(Xn) " << z << endl;
-	cout << "Gradiente: " << endl;
-	cout << Zlx(xn, yn) << endl;
-	cout << Zly(xn, yn) << endl;
+	cout << fixed << setprecision(7);
 
-	double h = 1;  //Inicialmente lambda é igual a 1.
+	double x = 0, y = 0, lambda = 2, precisao = 0.001;
+	int G2, G1, G05, G025;
 
-	while (true) { //ciclo termina quando Z>0
+	cout << setw(5) << "Xn" << setw(20) << "Z(Xn)" << setw(25) << "Gradient" << endl;
+	cout << x << setw(20) << Z(x,y) << setw(20) << Zx(x, y) << endl;
+	cout << y << setw(40)  << Zy(x, y) << endl << endl;
 
-		xn1 = xn - h * Zlx(xn, yn);
-		yn1 = yn - h * Zly(xn, yn);
-		if (Z(xn1, yn1) > Z(xn, yn) )
-			h /= 2; //se o proximo z e maior que o anterior descarta-se (outra vez) o ponto e corta-se o passo ao meio
-		else break;
-	}	
-	/* LAMBDA */
-	/* Apenas se pôe o passo *efetivo* de minimização.	*/
-	cout << "Lambda efetivo : " << h << endl; //neste caso o lambda acaba por ficar 0.25
-	z = Z(xn1, yn1);
-	cout << "x : "<< xn1 << endl << "y : " << yn1 << endl;
-	cout << "Z(Xn) " << z << endl;
-	cout << "Gradiente: " << endl;
-	cout << Zlx(xn1, yn1) << endl;
-	cout << Zly(xn1, yn1) << endl;
+	cout << "lambda = " << lambda << endl;
+	G2 = gradiente(x, y, lambda, precisao);	
+	cout << "N de iteracoes: "<< G2 << endl << endl; 
+	
+	cout << "lambda = " << lambda/2 << endl;
+	G1 = gradiente(x, y, lambda/2, precisao);	
+	cout << "N de iteracoes: " << G1 << endl << endl;
 
+	cout << "lambda = " << lambda/4 << endl;
+	G05 = gradiente(x,y, lambda/4, precisao);
+	cout << "N de iteracoes: " << G05 << endl << endl;
+
+	cout << "lambda = " << lambda/8 << endl;
+	G025 = gradiente(x, y, lambda/8, precisao);
+	cout << "N de iteracoes: " << G025 << endl << endl;
+	
 	system("pause");
 	return 0;
+
 }
